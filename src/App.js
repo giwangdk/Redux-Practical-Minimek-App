@@ -1,13 +1,44 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+
 import './App.css';
-import SampleComponent from './components/SampleComponent';
+
+import { Header, Container, Menu } from "semantic-ui-react";
+
 
 function App() {
+
+  const [activeItem, setActiveItem] = useState('unitInfo')
+  const handleItemClick = (e, { name }) => setActiveItem(name)
+  
   return (
     <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Project Mini- Mek</h2>
-      <SampleComponent/>
+      <div className="App-header">
+        <Header inverted as="h1">Project Mini-Mek</Header>
+      </div>
+      <Container>
+        <Menu tabular size="massive">
+          <Menu.Item name="unitInfo"
+            active={activeItem === 'unitInfo'}
+            onClick={handleItemClick}>
+            Unit Info
+          </Menu.Item>
+          <Menu.Item name="pilots" 
+            active={activeItem === 'pilots'}
+            onClick={handleItemClick}>
+            Pilots
+          </Menu.Item>
+          <Menu.Item name="mechs" 
+            active={activeItem === 'mechs'}
+            onClick={handleItemClick}>
+            Mechs
+          </Menu.Item>
+          <Menu.Item name="unitOrganization" 
+            active={activeItem === 'unitOrganization'}
+            onClick={handleItemClick}>
+            Unit
+          </Menu.Item>
+        </Menu>
+      </Container>
     </div>
   );
 }

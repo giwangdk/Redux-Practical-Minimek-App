@@ -18,6 +18,7 @@ const configureStore = (preloadedState) => {
         preloadedState,
         composedEnhancer
     )
+    
 
     return store;
 }
