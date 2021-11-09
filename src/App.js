@@ -1,43 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './App.css';
 
-import { Header, Container, Menu } from "semantic-ui-react";
+import { Header, Container } from "semantic-ui-react";
+import TabBarContainer from './feature/tabs/TabBarContainer';
 
+  const UnitInfo = () => <div>Unit Info Content</div>
+  const Pilots = () => <div>Pilots Content</div>
+  const Mechs = () => <div>Mechs Content</div>
+  const UnitOrganization = () => <div>Unit Organization Content</div>
 
-function App() {
-
-  const [activeItem, setActiveItem] = useState('unitInfo')
-  const handleItemClick = (e, { name }) => setActiveItem(name)
   
+function App() {
+  const tabs = [
+    {name: "unitInfo", label:"Unit Info", component:UnitInfo},
+    {name: "pilots", label:"Pilots", component:Pilots},
+    {name: "mechs", label:"Mechs", component: Mechs},
+    {name: "unitOrganization", label:"Unit Organization", component: UnitOrganization}
+  ]
+  
+
   return (
     <div className="App">
       <div className="App-header">
         <Header inverted as="h1">Project Mini-Mek</Header>
       </div>
       <Container>
-        <Menu tabular size="massive">
-          <Menu.Item name="unitInfo"
-            active={activeItem === 'unitInfo'}
-            onClick={handleItemClick}>
-            Unit Info
-          </Menu.Item>
-          <Menu.Item name="pilots" 
-            active={activeItem === 'pilots'}
-            onClick={handleItemClick}>
-            Pilots
-          </Menu.Item>
-          <Menu.Item name="mechs" 
-            active={activeItem === 'mechs'}
-            onClick={handleItemClick}>
-            Mechs
-          </Menu.Item>
-          <Menu.Item name="unitOrganization" 
-            active={activeItem === 'unitOrganization'}
-            onClick={handleItemClick}>
-            Unit
-          </Menu.Item>
-        </Menu>
+        <TabBarContainer tabs={tabs} size="massive"/>
       </Container>
     </div>
   );

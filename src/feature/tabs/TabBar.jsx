@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 
 import Tab from './Tab';
+import ToggleDisplay from '../../common/components/ToggleDisplay';
 
 const TabBar = (props) => {
     const { tabs, currentTab, onTabClick, ...otherProps } = props
@@ -19,11 +20,21 @@ const TabBar = (props) => {
             />
         )
     })
+
+    const tabPanels = tabs.map(tabInfo => {
+        const {name, component: TabComponent} = tabInfo
+        return(
+            <ToggleDisplay show={name === currentTab} key={name}>
+                <TabComponent/>
+            </ToggleDisplay>
+        )
+    })
     return (
         <div>
             <Menu tabular attached="top" {...otherProps}>
                 {tabItems}
             </Menu>
+            {tabPanels}
         </div>
      );
 }
